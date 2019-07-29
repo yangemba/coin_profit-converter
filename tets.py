@@ -2,23 +2,49 @@ from requests import Request, Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 import requests
-url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
-parameters = {
-  'start':'1',
-  'limit':'5000',
-  'convert':'USD'
-}
-headers = {
-  'Accepts': 'application/json',
-  'X-CMC_PRO_API_KEY': 'b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c',
-}
 
-session = Session()
-session.headers.update(headers)
+url = 'https://api.coincap.io/v2/assets/bitcoin/history?interval=d1'
+response = requests.get(url=url)
+# print(response.text)
+data = json.loads(response.text)
+# money = input("please input your money:")
+# correct = False
+#
+# while True:
+#   try:
+#     date = int(input("please input qnt of mouth(Integer, 0 < 24): "))
+#   except Exception as e:
+#     print(f"{e}")
+#     continue
+#   if int(date) <= 24:
+#     break
+money = 5000
+date = 4
 
-try:
-  response = session.get(url, params=parameters)
-  data = json.loads(response.text)
-  print(data)
-except (ConnectionError, Timeout, TooManyRedirects) as e:
-  print(e)
+days = int(date) * 30
+historical_index = len(data['data']) - days
+price = float(data['data'][-1]['priceUsd'])
+today_price = round(price, 0)
+print(data['data'][historical_index]['priceUsd'])
+
+historical_price = round(float(data['data'][historical_index]['priceUsd']), 0)
+final_money = (int(money) * today_price) / historical_price
+print(final_money)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
