@@ -5,7 +5,6 @@ import logging
 
 
 def historical_value(data, index):
-    print(f"$$$$$$$$$$$${index}")
     return round(float(data['data'][index].get('priceUsd')), 1)
 
 
@@ -17,11 +16,11 @@ def count(money, date):
     # historical_index = len(data['data']) - days
     price = float(data['data'][-1]['priceUsd'])
     today_price = round(price, 1)
-    bitcoin_purchaise = [(float(money )/ historical_value(data, x)) for x in
-                         range((len(data['data']) - days),  len(data['data']), 30)]
+    bitcoin_purchase = [(float(money) / historical_value(data, x)) for x in
+                        range((len(data['data']) - days),  len(data['data']), 30)]
     btc_qnt = 0
     # print([x for x in range((len(data['data']) - days),  len(data['data']), 30)])
-    for i in bitcoin_purchaise:
+    for i in bitcoin_purchase:
         btc_qnt = btc_qnt + i
 
     final_money = btc_qnt * today_price
