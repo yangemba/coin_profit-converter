@@ -1,5 +1,3 @@
-from requests import Request, Session
-from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 import requests
 import argparse
@@ -7,26 +5,27 @@ import logging
 
 
 def historical_value(data, index):
-    return round(float(data[index]['priceUsd']), 1)
+    print(f"$$$$$$$$$$$${index}")
+    return round(float(data['data'][index].get('priceUsd')), 1)
 
 
 def count(money, date):
     url = 'https://api.coincap.io/v2/assets/bitcoin/history?interval=d1'
     response = requests.get(url=url)
-    # print(response.text)
     data = json.loads(response.text)
     days = int(date) * 30
-    historical_index = len(data['data']) - days
+    # historical_index = len(data['data']) - days
     price = float(data['data'][-1]['priceUsd'])
     today_price = round(price, 1)
-    #print(data['data'][historical_index]['priceUsd'])
-    bitcoin_purchaise = [money / historical_value(data['data'], x) for x in range(len(data['data']), len(data['data']) - days)]
+    bitcoin_purchaise = [(float(money )/ historical_value(data, x)) for x in
+                         range((len(data['data']) - days),  len(data['data']), 30)]
     btc_qnt = 0
+    # print([x for x in range((len(data['data']) - days),  len(data['data']), 30)])
     for i in bitcoin_purchaise:
-        print(i)
-    historical_price = historical_value(data['data'], historical_index)
+        btc_qnt = btc_qnt + i
+
     final_money = btc_qnt * today_price
-    return btc_qnt, final_money
+    return round(btc_qnt, 3) , round(final_money, 1)
 
 
 if __name__ == "__main__":
@@ -37,4 +36,6 @@ if __name__ == "__main__":
 
     money = args.salary
     date = args.month
+    if int(date) > 24:
+        raise ValueError("24 month is maximum!")
     logging.warning(f"Your profit would be {count(money, date)[0]} BTC and {count(money, date)[1]} USD")
