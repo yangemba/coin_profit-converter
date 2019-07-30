@@ -29,8 +29,8 @@ def count(money, date):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-s", "--salary", help="Use this option to specify the domain or IP to scan.")
-    parser.add_argument("-m", "--month", help="Use this option to specify the domain or IP to scan.")
+    parser.add_argument("-s", "--salary", help="Use this option to specify your salary.")
+    parser.add_argument("-m", "--month", help="Use this option to specify amount of month less than 24 included.")
     args = parser.parse_args()
 
     money = args.salary
