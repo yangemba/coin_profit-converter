@@ -3,6 +3,7 @@
 The Application will show you theoretical profit you could have investing some part of your month income.
 
 ## Installation
+Python 3.7
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install bitcoin_profit.
 
