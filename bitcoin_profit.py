@@ -24,7 +24,7 @@ def count(money, date):
         btc_qnt = btc_qnt + i
 
     final_money = btc_qnt * today_price
-    return round(btc_qnt, 3) , round(final_money, 1)
+    return round(btc_qnt, 3), round(final_money, 1)
 
 
 if __name__ == "__main__":
