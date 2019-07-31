@@ -1,0 +1,6 @@
+version: "3"
+services:
+  btc:
+    image: btc_profit:latest
+    ports:
+        - "9999"
