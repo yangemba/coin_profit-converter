@@ -16,6 +16,17 @@ pip install - r requirements.txt
 ```bash
 python bitcoin_profit.py -s 1000 -m 24
 ```
+
+## Run via Docker
+
+```bash
+docker build -t btc_profit .
+```
+
+```bash
+./start_service.sh
+```
+
 Arguments:
 
     -s (--salary) - part of your salary for investing 

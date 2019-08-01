@@ -2,5 +2,4 @@ version: "3"
 services:
   btc:
     image: btc_profit:latest
-    ports:
-        - "9999"
+    command: sleep 86000
