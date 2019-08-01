@@ -11,12 +11,6 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install bitcoin
 pip install - r requirements.txt
 ```
 
-## Usage
-
-```bash
-python bitcoin_profit.py -s 1000 -m 24
-```
-
 ## Run via Docker
 
 ```bash
@@ -25,6 +19,12 @@ docker build -t btc_profit .
 
 ```bash
 ./start_service.sh
+```
+
+## Usage
+
+```bash
+python bitcoin_profit.py -s 1000 -m 24
 ```
 
 Arguments:
