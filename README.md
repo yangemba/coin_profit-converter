@@ -12,6 +12,7 @@ pip install - r requirements.txt
 ```
 
 ## Run via Docker
+(required docker-compose)
 
 ```bash
 docker build -t btc_profit .
